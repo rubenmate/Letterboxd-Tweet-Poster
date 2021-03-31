@@ -1,21 +1,33 @@
 #Importaciones: Tweepy para la API de Twitter y Feedparser para el feed RSS
-import tweepy
 import feedparser
 import time
-import os
+import json
 
 from config import create_api
 
-
+firstTime = True
 # TODO: Postear listas en otro hilo diferente
-# FIXME: Actualmente si reinicias el programa siempre escribe de nuevo la última película, incluso si ya había sido escrita. Solución, volcar a fichero el ID del último tweet escrito asi como el índice y demás datos relevantes
+# TODO: Ir guardando en una lista items posteados para no repetirlo
+
+try:
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+    firstTime = config["firstTime"]
+except Exception as e:
+    print (e)
+
+if firstTime:
+    config = {"firstTime": False, "last_tweet": 1376990746084007941, "index": 1, "previous_film": ""}
+    with open('config.json', 'w') as f:
+        json.dump(config, f)
 
 api = create_api()
 
 url = 'https://letterboxd.com/rbnmustdie/rss/'
-last_tweet = api.get_status(1376990746084007941)
-index = 1
-previous_film = ""
+last_tweet = api.get_status(config["last_tweet"])
+index = config["index"]
+previous_film = config["previous_film"]
+
 
 def letterboxd_rss():
     films_list = []
@@ -70,5 +82,10 @@ while True:
         except Exception as e:
             print("Failed posting tweet. See exception.")
             print(e)
+    else:
+        print("Nothing to post")
+    config = {"firstTime": False, "last_tweet": last_tweet.id, "index": index, "previous_film": previous_film}
+    with open('config.json', 'w') as f:
+        json.dump(config, f)
 
-    time.sleep(60)
+    time.sleep(900)
