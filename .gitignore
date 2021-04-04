@@ -2,3 +2,4 @@ venv
 .vscode
 config.json
 src/__pycache__/
+.DS_Store

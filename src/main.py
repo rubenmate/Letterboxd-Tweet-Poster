@@ -1,13 +1,15 @@
+# TODO: Postear listas en otro hilo diferente
+# TODO: Ir guardando en una lista items posteados para no repetirlo
+
 #Importaciones: Tweepy para la API de Twitter y Feedparser para el feed RSS
 import feedparser
 import time
 import json
+import emoji
 
 from config import create_api
 
 firstTime = True
-# TODO: Postear listas en otro hilo diferente
-# TODO: Ir guardando en una lista items posteados para no repetirlo
 
 try:
     with open('config.json', 'r') as f:
@@ -74,7 +76,11 @@ while True:
     if f != previous_film:
         print(f)
         previous_film = f
-        tweet_string = str(index) + ".- " + f['title']+'\n'+"    Link: " + str(f['link']).replace('(','',-1).replace(')','',-1).replace(',','',-1).replace('\'','',-1) +'\n'
+        emoji_star = emoji.emojize(":star:")
+        star = u"\u2605"
+        # FIXME: Arreglar replace y comprimir código haciendo más legible la línea
+        tweet_string = str(index) + ".- " + str(f['title']).replace(star, emoji_star, -1)+'\n' + str(f['link']).replace('(','',-1).replace(')','',-1).replace(',','',-1).replace('\'','',-1) +'\n'
+        print(tweet_string)
         try:
             last_tweet = api.update_status(tweet_string, last_tweet.id)
             index += 1
