@@ -90,8 +90,11 @@ while True:
             print(e)
     else:
         print("Nothing to post")
+    
+    # Guardado de ajustes en archivo de configuración
     config = {"firstTime": False, "last_tweet": last_tweet.id, "index": index, "previous_film": previous_film}
     with open('config.json', 'w') as f:
         json.dump(config, f)
 
+    # Esperar 15 minutos a la siguiente comprobación del feed RSS
     time.sleep(900)
