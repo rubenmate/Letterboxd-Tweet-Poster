@@ -5,7 +5,7 @@ Post your logged films/created lists on Lettterboxd to a Twitter thread
 
 1. You should build the image: ```docker build . -t letterbot```
 2. Ask for Twitter Developer access.
-3. Run the container export the following environmental variables: '
+3. Run the container and export the following environmental variables:
 ```
 docker run -it -e CONSUMER_KEY="uDRNy31oWfoiKV9AvPoNavy0I" \
 -e CONSUMER_SECRET="lnAL5VAgZLWNspQVpd3X6tEo47PRCmsPEwuxpvLCLSR08DMa4O" \
