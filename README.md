@@ -15,4 +15,4 @@ docker run -it -e CONSUMER_KEY="uDRNy31oWfoiKV9AvPoNavy0I" \
 letterbot
  ```
  
-Note: These are examples, you should export your own Twitter tokens.
+Note: These are examples (and not real keys), you should export your own Twitter tokens.
