@@ -1,5 +1,6 @@
 import feedparser
 import time
+import datetime
 import json
 import emoji
 from config import create_api
@@ -67,7 +68,6 @@ if firstTime:
 api = create_api()
 
 last_tweet = api.get_status(config["last_tweet"])
-next_to_last_tweet = api.get_status(config["next_to_last_tweet"])
 index = config["index"]
 last_film = config["last_film"]
 next_to_last_film = config["next_to_last_film"]
@@ -86,16 +86,18 @@ while True:
         emoji_star = emoji.emojize(":star:")
         star = u"\u2605"
         tweet_string = str(index) + ".- " + str(scrapped_film['title']).replace(star, emoji_star, -1) +'\n' + str(scrapped_film['link']).replace('(','',-1).replace(')','',-1).replace(',','',-1).replace('\'','',-1) +'\n'
-        print(tweet_string)
         try:
             last_tweet = api.update_status(tweet_string, last_tweet.id)
             index += 1
-            print("Posted tweet with id:", last_tweet.id)
+            now = datetime.datetime.now()
+            print(now.strftime('%H:%M:%S'), "Posted tweet with id:", last_tweet.id, "| Film:", last_film['title'])
         except Exception as e:
-            print("Failed posting tweet. See exception.")
+            now = datetime.datetime.now()
+            print(now.strftime('%H:%M:%S'), "Failed posting tweet. See exception.")
             print(e)
     else:
-        print("Nothing to post")
+        now = datetime.datetime.now()
+        print(now.strftime('%H:%M:%S'), "Nothing to post")
     
     config = {"firstTime": False,
     "last_tweet": last_tweet.id,
