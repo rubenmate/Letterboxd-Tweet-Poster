@@ -1,18 +1,12 @@
 # Letterboxd-Tweet-Poster
-Post your logged films/created lists on Lettterboxd to a Twitter thread
+
+Post your logged Letterboxd films to a Twitter thread
 
 ## Instructions
 
-1. You should build the image: ```docker build . -t letterbot```
-2. Ask for Twitter Developer access.
-3. Run the container and export the following environmental variables:
-```
-docker run -it -e CONSUMER_KEY="uDRNy31oWfoiKV9AvPoNavy0I" \
--e CONSUMER_SECRET="lnAL5VAgZLWNspQVpd3X6tEo47PRCmsPEwuxpvLCLSR08DMa4O" \
--e ACCESS_TOKEN="622518593-j7gWSqzQO31ju7Bf7idB47NlZeSENsuADGU9B69I" \
--e ACCESS_TOKEN_SECRET="iutFsxvP5IglRckJ1I1why6017xMNkzxqBID48Azw0GvT" \
--v /home/pi/.config/appdata/letterbot:/src \
-letterbot
- ```
- 
-Note: These are examples (and not real keys), you should export your own Twitter tokens.
+1. Edit source code with the main tweet and your desired wait time.
+2. Ask for your Twitter Developer access
+3. Export your keys as environmental variables.
+4. Run the script.
+5. You can adjust the settings with the config.json what will be created.
+6. If you want to run it as a docker container you can use the dockerfile.
