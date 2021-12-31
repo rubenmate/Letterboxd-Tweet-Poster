@@ -54,8 +54,8 @@ except Exception as e:
 
 if firstTime:
     films_raw_data, lists_raw_data = letterboxd_rss()
-    last_film = films_raw_data[1]
-    next_to_last_film = films_raw_data[2]
+    last_film = films_raw_data[0]
+    next_to_last_film = films_raw_data[1]
     config = {"firstTime": False,
     # Edit this with your first tweet ID
     "last_tweet": 1476657518759890949,
@@ -80,7 +80,7 @@ while True:
     tweet_string = ""
     scrapped_film = films_raw_data[0]
 
-    if scrapped_film['link'] != last_film['link'] and scrapped_film['link'] != next_to_last_film['link']:
+    if scrapped_film['published'] != last_film['published'] and scrapped_film['published'] != next_to_last_film['published']:
         next_to_last_film = last_film
         last_film = scrapped_film
         emoji_star = emoji.emojize(":star:")
@@ -98,6 +98,8 @@ while True:
     else:
         now = datetime.datetime.now()
         print(now.strftime('%H:%M:%S'), "Nothing to post")
+        last_film = films_raw_data[0]
+        next_to_last_film = films_raw_data[1]
     
     config = {"firstTime": False,
     "last_tweet": last_tweet.id,
