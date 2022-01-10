@@ -14,5 +14,6 @@ Post your logged Letterboxd films to a Twitter thread
 ### Docker Container
 1. Clone repository `git clone https://github.com/rubenmate/Letterboxd-Tweet-Poster`
 2. Move to the cloned folder
-3. Build the image `docker build -t letterbot:1.0 .`
-4. Run the container `docker run letterbot:1.0`
+3. Build the image `docker build -t letterbot .`
+4. Export environment variables to a file `echo CONSUMER_SECRET=foo >> my-env.txt`
+5. Run the container `docker run --env-file ~/my-env.txt letterbot`
