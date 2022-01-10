@@ -10,3 +10,9 @@ Post your logged Letterboxd films to a Twitter thread
 4. Run the script.
 5. You can adjust the settings with the config.json what will be created.
 6. If you want to run it as a docker container you can use the dockerfile.
+
+### Docker Container
+1. Clone repository `git clone https://github.com/rubenmate/Letterboxd-Tweet-Poster`
+2. Move to the cloned folder
+3. Build the image `docker build -t letterbot:1.0 .`
+4. Run the container `docker run letterbot:1.0`

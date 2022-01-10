@@ -58,7 +58,7 @@ if firstTime:
     next_to_last_film = films_raw_data[1]
     config = {"firstTime": False,
     # Edit this with your first tweet ID
-    "last_tweet": 1476657518759890949,
+    "last_tweet": 1480663891042611202,
     "index": 1,
     "next_to_last_film": next_to_last_film, 
     "last_film": last_film}
