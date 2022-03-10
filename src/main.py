@@ -113,7 +113,8 @@ while True:
             )
         except Exception as e:
             now = datetime.datetime.now()
-            print(now.strftime("%H:%M:%S"), "Failed posting tweet. See exception.")
+            format_hour = now.strftime("%H:%M:%S")
+            print(format_hour, "Failed posting tweet. See exception.")
             print(e)
     else:
         now = datetime.datetime.now()
