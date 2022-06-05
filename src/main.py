@@ -63,7 +63,7 @@ if firstTime:
         "last_film": last_film,
     }
     with open("config.json", "w") as f:
-        json.dump(config, f)
+        json.dump(config, f, indent=4)
 
 api = create_api()
 
